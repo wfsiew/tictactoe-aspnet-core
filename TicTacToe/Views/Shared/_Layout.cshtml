@@ -5,16 +5,23 @@
   <meta name="viewport" content="width=device-width" />
   <title>@ViewBag.Title - TicTacToe</title>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <environment include="Staging">
+    <script src="~/js/site.min.js"></script>
+  </environment>
   <environment include="Development">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/js/script1.js"></script>
+    <script src="~/js/script2.js"></script>
   </environment>
   <environment exclude="Development">
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="~/css/bootstrap.min.css" rel="stylesheet"
           asp-fallback-test-class="sr-only"
           asp-fallback-test-property="position"
           asp-fallback-test-value="absolute" />
-    <link href="~/css/site.css" rel="stylesheet" 
+    <link href="~/css/site.css" rel="stylesheet"
           asp-append-version="true" />
   </environment>
 </head>
@@ -51,5 +58,6 @@
       <p>&copy; 2017 - TicTacToe</p>
     </footer>
   </div>
+  @RenderSection("Scripts")
 </body>
 </html>

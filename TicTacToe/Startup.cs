@@ -40,6 +40,7 @@ namespace TicTacToe
             }
 
             app.UseStaticFiles();
+            app.UseWebSockets();
             app.UseCommunicationMiddleware();
             //app.UseDirectoryBrowser();
             app.UseMvc(routes =>

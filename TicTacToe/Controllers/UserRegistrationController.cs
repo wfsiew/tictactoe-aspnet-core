@@ -25,9 +25,29 @@ namespace TicTacToe.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserModel userModel)
         {
-            await m_userService.RegisterUser(userModel);
-            return Content($"User {userModel.FirstName}" +
-                $" {userModel.LastName} has been registered successfully");
+            if (ModelState.IsValid)
+            {
+                await m_userService.RegisterUser(userModel);
+                return RedirectToAction(nameof(EmailConfirmation), new { userModel.Email });
+                //return Content($"User {userModel.FirstName}" +
+                //    $" {userModel.LastName} has been registered successfully");
+            }
+
+            return View(userModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EmailConfirmation(string email)
+        {
+            var user = await m_userService.GetUserByEmail(email);
+            if (user?.IsEmailConfirmed == true)
+                return RedirectToAction("Index", "GameInvitation",
+                new { email = email });
+            ViewBag.Email = email;
+            //user.IsEmailConfirmed = true;
+            //user.EmailConfirmationDate = DateTime.Now;
+            //await m_userService.UpdateUser(user);
+            return View();
         }
     }
 }
