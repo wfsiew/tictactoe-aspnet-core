@@ -1,8 +1,11 @@
 ﻿@model TicTacToe.Models.UserModel
 
 @{
-  ViewData["Title"] = "Index";
+    ViewData["Title"] = Localizer["Title"];
 }
+
+<h2>@ViewData["Title"]</h2>
+<h4>@Localizer["SubTitle"]</h4>
 
 <h2>Index</h2>
 

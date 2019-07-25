@@ -6,6 +6,7 @@
   <title>@ViewBag.Title - TicTacToe</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="~/js/bootstrap.min.js"></script>
 
   <environment include="Staging">
     <script src="~/js/site.min.js"></script>
@@ -47,33 +48,20 @@
           <li class="nav-item">
             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Settings
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Select your language (@ViewBag.Language)</a>
+              <a asp-controller="Home" asp-action="SetCulture"
+                 asp-route-culture="EN" class="dropdown-item">English</a>
+              <a asp-controller="Home" asp-action="SetCulture"
+                 asp-route-culture="FR" class="dropdown-item">French</a>
+            </div>
+          </li>
         </ul>
       </div>
-      <ul>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"
-             href="#">Settings<span class="caret"></span></a>
-          <ul class="dropdown-menu multi-level">
-            <li class="dropdown-submenu">
-              <a class="dropdown-toggle" data-toggle="dropdown"
-                 href="#">
-                Select your language (@ViewBag.Language)
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li @(ViewBag.Language == "EN" ? "active" : "")>
-                  <a asp-controller="Home" asp-action="SetCulture"
-                     asp-route-culture="EN">English</a>
-                </li>
-                <li @(ViewBag.Language == "FR" ? "active" : "")>
-                  <a asp-controller="Home" asp-action="SetCulture"
-                     asp-route-culture="FR">French</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
     </div>
   </nav>
   <div class="container body-content">
